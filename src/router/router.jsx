@@ -13,6 +13,7 @@ import EditBlog from "../pages/Dashboard/BlogPage/EditBlog";
 import UserBlogList from "../pages/Dashboard/BlogPage/UserBlogs/UserBlogList";
 import VerifyEmail from "../shared/Login/Verification/VerifyEmail";
 import SavedItems from "../pages/SavedItems/SavedItems";
+import EditUserBlog from "../pages/Dashboard/BlogPage/UserBlogs/EditUserBlog";
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
                     {
                         path: 'edit-blog/:id',
                         element: <PrivateRoutes><EditBlog /></PrivateRoutes>
+                    },
+                    {
+                        path: 'edit-user-blog/:id',
+                        element: <PrivateRoutes><EditUserBlog /></PrivateRoutes>
                     },
                     {
                         path: 'my-blogs',

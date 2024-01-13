@@ -1,13 +1,15 @@
 import { useNavigate, useParams } from "react-router-dom";
-import useSingleBlogHooks from "../../../hooks/blogs/useSingleBlogHooks";
-import { Container, TextField, Button, MenuItem, Select, InputLabel, Input, TextareaAutosize } from "@mui/material";
+import useSingleBlogHooks from "../../../../hooks/blogs/useSingleBlogHooks";
+import { Container, TextField, Button, MenuItem, Select, InputLabel, Input } from "@mui/material";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import secureApi from "../../../api/secureApi";
+import secureApi from "../../../../api/secureApi";
+import useUserBlogs from "../../../../hooks/user/useUserBlogs";
 
-const EditBlog = () => {
+const EditUserBlog = () => {
     const { id } = useParams();
     const { singleBlogData, isLoading } = useSingleBlogHooks(id);
+    const { refetch } = useUserBlogs()
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -75,7 +77,8 @@ const EditBlog = () => {
                 if (response) {
                     toast.success('Updated successfully..')
                     setTimeout(() => {
-                        navigate('/dashboard/blog-list')
+                        refetch()
+                        navigate('/dashboard/my-blogs')
                     }, 1500)
                 }
 
@@ -103,6 +106,7 @@ const EditBlog = () => {
         });
     };
 
+
     return (
         <div className="py-5">
             <div className="container mx-auto lg:flex">
@@ -118,12 +122,12 @@ const EditBlog = () => {
                                 variant="outlined"
                                 margin="normal"
                             />
-                            <TextareaAutosize
-                                
+                            <TextField
+                                fullWidth
                                 label="Description"
                                 name="description"
                                 multiline
-                                style={{ width: '100%' }} 
+                                rows={4}
                                 value={formData.description}
                                 onChange={(e) => handleDescriptionChange(e.target.value)}
                                 variant="outlined"
@@ -159,6 +163,6 @@ const EditBlog = () => {
             </div>
         </div>
     );
-};
+}
 
-export default EditBlog;
+export default EditUserBlog;

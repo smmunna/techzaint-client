@@ -116,7 +116,7 @@ const UserBlogList = () => {
                                 <TableCell colSpan={2}>
                                     <div className="flex justify-center gap-2">
                                         <IconButton aria-label="edit" >
-                                            <Link to={`/dashboard/edit-blog/${blog.id}`}><Edit /></Link>
+                                            <Link to={`/dashboard/edit-user-blog/${blog.id}`}><Edit /></Link>
                                         </IconButton>
                                         <IconButton aria-label="delete">
                                             <button onClick={() => handleDelete(blog.id)}>

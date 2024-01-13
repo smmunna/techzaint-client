@@ -15,6 +15,7 @@ const SingleBlog = () => {
     const { id } = useParams()
     const { singleBlogData, isLoading } = useSingleBlogHooks(id)
     const { title, description, favorite, cover_img, created_at } = singleBlogData
+   
     return (
         <div className="py-5">
             <div className="container mx-auto lg:flex">
@@ -57,7 +58,7 @@ const SingleBlog = () => {
                                                     <IconButton size="small">
                                                         <AccessTime />
                                                     </IconButton>
-                                                    <span className="text-gray-600 mr-4">5 min read</span>
+                                                    <span className="text-gray-600 mr-4">2 min read</span>
                                                 </div>
                                             </div>
                                         </div>

@@ -27,7 +27,6 @@ const BlogComponent = ({ blog }) => {
     const navigate = useNavigate();
     // console.log(blog)
     const { id, title, description, favorite, cover_img, created_at } = blog
-
     // handle saveitem
     const handleSaved = (id) => {
         if (!user) {
@@ -104,7 +103,7 @@ const BlogComponent = ({ blog }) => {
                     <IconButton size="small">
                         <AccessTime />
                     </IconButton>
-                    <span className="text-gray-600 mr-4">5 min read</span>
+                    <span className="text-gray-600 mr-4">2 min read</span>
                 </div>
             </div>
             <ToastContainer />

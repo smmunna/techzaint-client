@@ -34,6 +34,12 @@ export const MainListItems = () => {
               </ListItemIcon>
               <ListItemText primary="Blog List" />
             </ListItemButton>
+            <ListItemButton component={Link} to="/dashboard/my-blogs">
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="My Blogs" />
+            </ListItemButton>
           </>
           :
           <>

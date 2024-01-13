@@ -7,8 +7,10 @@ import 'react-quill/dist/quill.snow.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import secureApi from '../../../api/secureApi';
+import useSingleBlogHooks from '../../../hooks/blogs/useSingleBlogHooks';
 
 const CreateBlog = () => {
+    const { refetch } = useSingleBlogHooks()
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -73,9 +75,10 @@ const CreateBlog = () => {
         // Send data to backend for saving to db;
         secureApi.post('/create-blog', formData)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 if (res.message) {
                     toast.success('Blog created successfully')
+                    refetch()
                 }
             })
             .catch(error => {
