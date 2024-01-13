@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useSingleBlogHooks from "../../hooks/blogs/useSingleBlogHooks";
 import { Container, IconButton, Skeleton } from "@mui/material";
 import parse from 'html-react-parser';
@@ -45,9 +45,6 @@ const SingleBlog = () => {
                                                 <p className="mt-2">
                                                     {parse(description)}
                                                 </p>
-                                                <Link to={`/single-blog/${id}`} className="text-blue-500 hover:underline">
-                                                    Read more...
-                                                </Link>
                                                 <div className="flex items-center mt-4">
                                                     <IconButton size="small" color="error">
                                                         <Favorite />

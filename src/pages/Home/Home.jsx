@@ -66,7 +66,9 @@ const Home = () => {
                                                         </>
                                                         :
                                                         <>
-
+                                                            <div className="text-red-500 text-center py-5 font-semibold text-xl bg-slate-100 font-serif">
+                                                                <h3> Blogs Information Not found..</h3>
+                                                            </div>
                                                         </>
                                                 }
                                             </>

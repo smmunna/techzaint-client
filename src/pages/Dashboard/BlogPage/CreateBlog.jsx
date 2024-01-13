@@ -134,6 +134,7 @@ const CreateBlog = () => {
                             [{ list: 'ordered' }, { list: 'bullet' }],
                             ['link', 'image'],
                             [{ 'size': ['small', false, 'large', 'huge'] }],
+                            ['code-block'],
                             ['clean'],
                         ],
                     }}
@@ -162,7 +163,7 @@ const CreateBlog = () => {
                     sx={{ mt: 2, }}
                     required
                 />
-                
+
                 <Button type="submit" variant="contained" color="primary" sx={{ mt: 2, }}>
                     Submit
                 </Button>

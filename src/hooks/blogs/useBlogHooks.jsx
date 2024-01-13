@@ -1,37 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useQuery } from "@tanstack/react-query";
 import secureApi from "../../api/secureApi";
 
 const useBlogHooks = (offset, limit) => {
-    const [blogData, setblogData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [total,setTotal] = useState(null)
+    const { refetch, data, isLoading, error } = useQuery({
+        queryKey: ['view-blog', offset, limit],
+        queryFn: async () => {
+            const response = await secureApi.get(`/view-blog?offset=${offset}&limit=${limit}`);
+            return response; // Assuming data is the property containing blogs in your API response
+        },
+    });
 
-    const fetchData = () => {
-        setIsLoading(true);
-        secureApi
-            .get(`/view-blog?offset=${offset}&limit=${limit}`)
-            .then((res) => {
-                setblogData(res.blogs);
-                setTotal(res.total)
-                setIsLoading(false);
-            })
-            .catch((err) => {
-                setError(err);
-                setIsLoading(false);
-            });
-    };
+    const blogData = data?.blogs || [];
+    const total = data?.total || 0;
 
-
-    const refetch = () => {
-        fetchData();
-    };
-
-    useEffect(() => {
-        refetch()
-    }, [offset, limit])
-
-    return { blogData, isLoading, error,total, refetch };
+    return { blogData, isLoading, error, total, refetch };
 };
 
 export default useBlogHooks;
+
+

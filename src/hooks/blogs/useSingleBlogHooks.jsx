@@ -1,33 +1,19 @@
-import { useState, useEffect } from 'react';
-import secureApi from "../../api/secureApi";
+import { useQuery } from '@tanstack/react-query';
+import secureApi from '../../api/secureApi';
+import { useEffect } from 'react';
 
 const useSingleBlogHooks = (id) => {
-    const [singleBlogData, setsingleBlogData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    const fetchData = () => {
-        setIsLoading(true);
-        secureApi
-            .get(`/single-blog?id=${id}`)
-            .then((res) => {
-                setsingleBlogData(res.blog);
-                setIsLoading(false);
-            })
-            .catch((err) => {
-                setError(err);
-                setIsLoading(false);
-            });
-    };
-
-
-    const refetch = () => {
-        fetchData();
-    };
+    const { refetch, data: singleBlogData = {}, isLoading, error } = useQuery({
+        queryKey: ['singleBlog', id],
+        queryFn: async () => {
+            const response = await secureApi.get(`/single-blog?id=${id}`);
+            return response.blog;
+        },
+    });
 
     useEffect(() => {
-        refetch()
-    }, [id])
+        refetch();
+    }, [id]);
 
     return { singleBlogData, isLoading, error, refetch };
 };

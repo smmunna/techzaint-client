@@ -185,42 +185,37 @@ const Blogs = () => {
                                 </>
                                 :
                                 <>
-                                    {
-                                        filteredBlogData.length == 0 ?
-                                            <>
-                                                <div className="text-red-500 text-center py-5 font-semibold text-xl bg-slate-100 font-serif">
-                                                    <h3> Blogs Information Not found..</h3>
-                                                </div>
-                                            </>
-                                            :
-                                            <>
-                                                {
-                                                    filteredBlogData.length > 0 ?
-                                                        <>
-                                                            {filteredBlogData.map((blog, index) => (
-                                                                <React.Fragment key={index}>
-                                                                    <BlogComponent blog={blog} />
-                                                                </React.Fragment>
-                                                            ))}
-                                                            <div className="flex justify-center">
-                                                                <div>
-                                                                    <Pagination
-                                                                        count={Math.ceil(total / 5)} // Assuming 5 items per page, adjust accordingly
-                                                                        page={currentPage}
-                                                                        onChange={handlePageChange}
-                                                                        variant="outlined"
-                                                                        shape="rounded"
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </>
-                                                        :
-                                                        <>
 
-                                                        </>
-                                                }
-                                            </>
-                                    }
+                                    <>
+                                        {
+                                            filteredBlogData.length > 0 ?
+                                                <>
+                                                    {filteredBlogData.map((blog, index) => (
+                                                        <React.Fragment key={index}>
+                                                            <BlogComponent blog={blog} />
+                                                        </React.Fragment>
+                                                    ))}
+                                                    <div className="flex justify-center">
+                                                        <div>
+                                                            <Pagination
+                                                                count={Math.ceil(total / 5)} // Assuming 5 items per page, adjust accordingly
+                                                                page={currentPage}
+                                                                onChange={handlePageChange}
+                                                                variant="outlined"
+                                                                shape="rounded"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </>
+                                                :
+                                                <>
+                                                    <div className="text-red-500 text-center py-5 font-semibold text-xl bg-slate-100 font-serif">
+                                                        <h3> Blogs Information Not found..</h3>
+                                                    </div>
+                                                </>
+                                        }
+                                    </>
+
                                 </>
                         }
                     </div>

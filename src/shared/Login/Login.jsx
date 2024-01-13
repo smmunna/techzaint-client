@@ -35,7 +35,6 @@ export default function Login() {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
-
     const handleSubmit = (event) => {
         event.preventDefault();
         setLoading(true)

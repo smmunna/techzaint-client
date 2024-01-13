@@ -11,16 +11,18 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { Link, useNavigate } from 'react-router-dom';
 import BrandIcon from "../../assets/brand/brand.png";
 import useUserInfoHooks from "../../hooks/user/useUserInfoHooks";
+import useSaveItem from '../../hooks/saveitems/useSaveItem';
 
 const pages = ['Product', 'Pricing', 'Blog'];
 
 const Header = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [savedItems] = useSaveItem()
+
     const navigate = useNavigate();
     const email = localStorage.getItem('email');
 
@@ -54,7 +56,7 @@ const Header = () => {
             <AppBar position="static" sx={{ backgroundColor: 'white', color: 'black' }}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <img src={BrandIcon} style={{ display: { xs: 'none', md: 'flex' }, mr: 1, height: '50px' }} />
+                        <img src={BrandIcon} className="hidden lg:block" style={{ display: { xs: 'none', md: 'flex' }, mr: 1, height: '50px' }} />
                         <Typography
                             variant="h6"
                             noWrap
@@ -111,7 +113,9 @@ const Header = () => {
                                 ))}
                             </Menu>
                         </Box>
-                        <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                        {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+                        <img src={BrandIcon} className="block lg:hidden" style={{ display: { xs: 'none', md: 'flex' }, mr: 1, height: '50px' }} />
+
                         <Typography
                             variant="h5"
                             noWrap
@@ -190,6 +194,9 @@ const Header = () => {
                                                     <>
                                                         <MenuItem onClick={handleCloseUserMenu}>
                                                             <Typography textAlign="center"><Link to={'/dashboard'}>Dashboard</Link></Typography>
+                                                        </MenuItem>
+                                                        <MenuItem onClick={handleCloseUserMenu}>
+                                                            <Typography textAlign="center"><Link to={'/saved-items'}>Saved Blogs [{savedItems?.length}]</Link></Typography>
                                                         </MenuItem>
                                                         <MenuItem onClick={handleCloseUserMenu}>
                                                             <Typography textAlign="center" onClick={handleLogout}>Logout</Typography>
